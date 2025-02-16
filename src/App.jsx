@@ -1,13 +1,37 @@
-import './App.css'
+import "./App.css";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainLayout from "./components/Layout/MainLayout";
+import Home from "./pages/Home";
+import FetchOld from "./pages/FetchOld";
+import FetchReq from "./pages/FetchReq";
 
-function App() {
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/trad",
+        element: <FetchOld />,
+      },
+      {
+        path: "/rq",
+        element: <FetchReq />,
+      },
+    ],
+  },
+]);
+
+const App = () => {
   return (
     <>
-      <div>
-        <h1>TanStack Query</h1>
-      </div>
+      <RouterProvider router={router}></RouterProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
